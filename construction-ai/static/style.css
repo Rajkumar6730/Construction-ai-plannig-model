@@ -1,0 +1,57 @@
+/* static/style.css — BuildAI Pro shared stylesheet */
+
+/* ── CSS Variables ─────────────────────────────────────── */
+:root {
+  --bg:       #0d0f14;
+  --surface:  #161a24;
+  --surface2: #1e2430;
+  --border:   #2a3040;
+  --accent:   #f5a623;
+  --accent2:  #4f8ef7;
+  --green:    #34d399;
+  --red:      #f87171;
+  --text:     #e8eaf0;
+  --muted:    #7a8499;
+  --radius:   14px;
+  --font-head:'Syne', sans-serif;
+  --font-body:'DM Sans', sans-serif;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); }
+a    { color: inherit; text-decoration: none; }
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Utility ────────────────────────────────────────────── */
+.text-accent  { color: var(--accent); }
+.text-accent2 { color: var(--accent2); }
+.text-muted   { color: var(--muted); }
+.text-green   { color: var(--green); }
+.text-red     { color: var(--red); }
+.font-head    { font-family: var(--font-head); font-weight: 700; }
+
+/* ── Shared card hover lift ─────────────────────────────── */
+.card-hover {
+  transition: transform .2s, border-color .2s;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent2);
+}
+
+/* ── Print styles ────────────────────────────────────────── */
+@media print {
+  nav, .back-btn, footer { display: none !important; }
+  body { background: white; color: black; }
+  .card, .ai-card, .blueprint-wrap, .sched-wrap {
+    border: 1px solid #ccc !important;
+    background: white !important;
+  }
+}

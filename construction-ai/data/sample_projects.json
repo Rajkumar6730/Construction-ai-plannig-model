@@ -1,0 +1,122 @@
+[
+  {
+    "project_name": "Small House",
+    "area": 800,
+    "floors": 1,
+    "workers": 8,
+    "cement_bags": 320,
+    "steel_kg": 160,
+    "duration_days": 30,
+    "estimated_cost": 2800000,
+    "location": "Hyderabad",
+    "type": "Residential"
+  },
+  {
+    "project_name": "Medium Duplex",
+    "area": 1500,
+    "floors": 2,
+    "workers": 18,
+    "cement_bags": 900,
+    "steel_kg": 450,
+    "duration_days": 75,
+    "estimated_cost": 6200000,
+    "location": "Bangalore",
+    "type": "Residential"
+  },
+  {
+    "project_name": "Apartment Block",
+    "area": 5000,
+    "floors": 5,
+    "workers": 60,
+    "cement_bags": 4000,
+    "steel_kg": 2000,
+    "duration_days": 180,
+    "estimated_cost": 24000000,
+    "location": "Mumbai",
+    "type": "Residential RCC"
+  },
+  {
+    "project_name": "Greenview Residency",
+    "area": 1000,
+    "floors": 3,
+    "workers": 30,
+    "cement_bags": 1200,
+    "steel_kg": 600,
+    "duration_days": 84,
+    "estimated_cost": 19500000,
+    "location": "Hyderabad",
+    "type": "Residential RCC"
+  },
+  {
+    "project_name": "Sunrise Heights",
+    "area": 1500,
+    "floors": 4,
+    "workers": 45,
+    "cement_bags": 2400,
+    "steel_kg": 1200,
+    "duration_days": 120,
+    "estimated_cost": 32000000,
+    "location": "Bangalore",
+    "type": "Residential RCC"
+  },
+  {
+    "project_name": "Metro Plaza",
+    "area": 2000,
+    "floors": 4,
+    "workers": 60,
+    "cement_bags": 3200,
+    "steel_kg": 1600,
+    "duration_days": 150,
+    "estimated_cost": 48000000,
+    "location": "Chennai",
+    "type": "Commercial RCC"
+  },
+  {
+    "project_name": "Lakeview Apartments",
+    "area": 800,
+    "floors": 2,
+    "workers": 20,
+    "cement_bags": 640,
+    "steel_kg": 320,
+    "duration_days": 60,
+    "estimated_cost": 12000000,
+    "location": "Pune",
+    "type": "Residential RCC"
+  },
+  {
+    "project_name": "Skyline Towers",
+    "area": 3000,
+    "floors": 5,
+    "workers": 90,
+    "cement_bags": 6000,
+    "steel_kg": 3000,
+    "duration_days": 200,
+    "estimated_cost": 72000000,
+    "location": "Mumbai",
+    "type": "Residential RCC"
+  },
+  {
+    "project_name": "Heritage Bungalow",
+    "area": 500,
+    "floors": 2,
+    "workers": 12,
+    "cement_bags": 400,
+    "steel_kg": 200,
+    "duration_days": 45,
+    "estimated_cost": 8500000,
+    "location": "Delhi",
+    "type": "Residential"
+  },
+  {
+    "project_name": "Tech Park Block B",
+    "area": 2500,
+    "floors": 3,
+    "workers": 75,
+    "cement_bags": 3000,
+    "steel_kg": 1500,
+    "duration_days": 180,
+    "estimated_cost": 56000000,
+    "location": "Hyderabad",
+    "type": "Commercial RCC"
+  }
+]

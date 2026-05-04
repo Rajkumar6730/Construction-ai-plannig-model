@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results – BuildAI Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f14;--surface:#161a24;--surface2:#1e2430;
+  --border:#2a3040;--accent:#f5a623;--accent2:#4f8ef7;
+  --green:#34d399;--red:#f87171;--text:#e8eaf0;--muted:#7a8499;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);}
+a{color:inherit;text-decoration:none;}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,15,20,.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;
+  display:flex;align-items:center;gap:10px;}
+.logo-box{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),#e8852a);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.back-btn{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);padding:8px 16px;border-radius:8px;
+  font-size:.85rem;font-weight:500;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:border-color .2s;
+}
+.back-btn:hover{border-color:var(--accent2);}
+
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:2.5rem 2rem;}
+
+.page-title{
+  font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+  margin-bottom:.4rem;
+}
+.page-sub{color:var(--muted);font-size:.95rem;margin-bottom:2rem;}
+
+/* GRID LAYOUTS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem;}
+.full{margin-bottom:1.5rem;}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem;}
+.card-header{
+  display:flex;align-items:center;gap:9px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  margin-bottom:1.2rem;padding-bottom:.9rem;border-bottom:1px solid var(--border);
+}
+.icon{
+  width:30px;height:30px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.ib{background:rgba(79,142,247,.15);}
+.ig{background:rgba(52,211,153,.15);}
+.io{background:rgba(245,166,35,.15);}
+.ip{background:rgba(167,139,250,.15);}
+.ir{background:rgba(248,113,113,.15);}
+
+/* AI CARD */
+.ai-card{
+  background:linear-gradient(135deg,rgba(79,142,247,.07),rgba(167,139,250,.07));
+  border:1px solid rgba(79,142,247,.25);
+  border-radius:16px;padding:1.4rem;margin-bottom:1.5rem;
+}
+.ai-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(79,142,247,.15);color:var(--accent2);
+  padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;
+}
+.ai-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.ai-list li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:.9rem;line-height:1.6;color:var(--text);
+}
+.ai-list li::before{content:'→';color:var(--accent2);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* WORKERS */
+.workers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.w-item{background:var(--surface2);border-radius:10px;padding:1rem;text-align:center;}
+.w-item.total{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);}
+.w-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--accent);}
+.w-label{font-size:.72rem;color:var(--muted);margin-top:3px;}
+.labour-days{
+  margin-top:.9rem;padding:9px 13px;
+  background:var(--surface2);border-radius:8px;
+  font-size:.83rem;color:var(--muted);
+}
+.labour-days strong{color:var(--accent2);}
+
+/* TIMELINE */
+.tl-row{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 0;border-bottom:1px solid var(--border);}
+.tl-row:last-child{border-bottom:none;}
+.tl-label{color:var(--muted);font-size:.88rem;}
+.tl-val{font-family:'Syne',sans-serif;font-weight:700;color:var(--accent2);}
+
+/* COSTS */
+.cost-row{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 13px;background:var(--surface2);border-radius:8px;margin-bottom:.5rem;}
+.cost-row.total{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);}
+.cost-label{font-size:.88rem;color:var(--muted);}
+.cost-val{font-weight:700;font-family:'Syne',sans-serif;}
+.cost-row.total .cost-label{color:var(--accent);font-weight:600;}
+.cost-row.total .cost-val{color:var(--accent);font-size:1.05rem;}
+
+/* MATERIALS */
+.mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.mat-item{background:var(--surface2);border-radius:10px;padding:.9rem;
+  display:flex;align-items:center;gap:.7rem;}
+.mat-icon{font-size:1.3rem;}
+.mat-name{font-size:.75rem;color:var(--muted);}
+.mat-qty{font-weight:700;font-size:.9rem;}
+
+/* RISK BADGE */
+.risk-row{display:flex;align-items:center;justify-content:space-between;
+  padding:1rem;border-radius:10px;margin-bottom:.7rem;}
+.risk-low{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);}
+.risk-medium{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);}
+.risk-high{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);}
+.risk-label{font-weight:700;font-size:1.1rem;}
+.risk-low .risk-label{color:var(--green);}
+.risk-medium .risk-label{color:var(--accent);}
+.risk-high .risk-label{color:var(--red);}
+.score-bar{height:8px;border-radius:4px;background:var(--surface2);margin-top:.5rem;overflow:hidden;}
+.score-fill{height:100%;border-radius:4px;background:var(--green);transition:width .6s;}
+
+/* SIMILAR PROJECT */
+.sim-item{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 0;border-bottom:1px solid var(--border);}
+.sim-item:last-child{border-bottom:none;}
+.sim-key{font-size:.83rem;color:var(--muted);}
+.sim-val{font-weight:600;font-size:.88rem;}
+
+/* BLUEPRINT */
+.blueprint-wrap{
+  background:#091828;border:1px solid var(--border);
+  border-radius:16px;padding:1.8rem;margin-bottom:1.5rem;
+}
+.bp-header{
+  font-family:'Syne',sans-serif;font-weight:700;
+  color:#7ab8f5;margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:8px;
+}
+.floor-block{
+  background:#0d1f3c;border:1px solid #1a3060;
+  border-radius:12px;padding:1.4rem;margin-bottom:1.2rem;
+}
+.floor-block:last-child{margin-bottom:0;}
+.floor-name{text-align:center;font-family:'Syne',sans-serif;font-size:.8rem;
+  font-weight:700;color:#7ab8f5;letter-spacing:.1em;margin-bottom:1rem;}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.room{background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.28);
+  border-radius:8px;padding:10px;}
+.room-name{font-size:.65rem;font-weight:700;color:#7ab8f5;letter-spacing:.05em;text-transform:uppercase;}
+.room-sub{font-size:.65rem;color:#4a7fb5;margin:2px 0;}
+.room-dim{font-size:.65rem;color:#5a8fc5;}
+.floor-area{text-align:center;font-size:.7rem;color:#3a6fa5;margin-top:.8rem;}
+
+/* SCHEDULE */
+.sched-wrap{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;margin-bottom:1.5rem;}
+.sched-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);
+  font-family:'Syne',sans-serif;font-weight:700;display:flex;align-items:center;gap:8px;}
+.sched-item{display:flex;gap:1.2rem;padding:.9rem 1.5rem;
+  border-bottom:1px solid var(--border);align-items:flex-start;transition:background .15s;}
+.sched-item:last-child{border-bottom:none;}
+.sched-item:hover{background:var(--surface2);}
+.sched-dot{width:11px;height:11px;border-radius:50%;background:var(--accent2);
+  flex-shrink:0;margin-top:4px;box-shadow:0 0 7px rgba(79,142,247,.4);}
+.sched-week{font-size:.7rem;color:var(--accent);font-weight:700;text-transform:uppercase;}
+.sched-phase{font-weight:600;font-size:.9rem;margin:2px 0;}
+.sched-acts{font-size:.78rem;color:var(--muted);}
+
+/* ASSUMPTIONS */
+.assump-item{display:flex;justify-content:space-between;align-items:center;
+  padding:10px 1.2rem;border-bottom:1px solid var(--border);}
+.assump-item:last-child{border-bottom:none;}
+.assump-key{font-size:.83rem;color:var(--muted);}
+.assump-val{font-weight:600;font-size:.85rem;}
+
+.fab{
+  position:fixed;bottom:2rem;right:2rem;z-index:200;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),#7c6bf0);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  box-shadow:0 4px 20px rgba(79,142,247,.4);
+  transition:transform .2s,box-shadow .2s;text-decoration:none;
+}
+.fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(79,142,247,.55);}
+.fab-label{
+  position:absolute;right:68px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);padding:5px 11px;border-radius:7px;
+  font-size:.78rem;font-weight:600;white-space:nowrap;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+  font-family:'DM Sans',sans-serif;
+}
+.fab:hover .fab-label{opacity:1;}
+footer{padding:1.8rem;text-align:center;border-top:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;}
+
+@media(max-width:800px){
+  .grid-3,.grid-2{grid-template-columns:1fr;}
+  .workers-grid{grid-template-columns:repeat(2,1fr);}
+  .mat-grid{grid-template-columns:1fr;}
+  .rooms-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/script.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-box">🏗️</div>BuildAI Pro
+  </div>
+  <a href="/"><button class="back-btn">← New Calculation</button></a>
+</nav>
+
+<div class="page">
+  <h1 class="page-title">📋 Construction Plan Results</h1>
+  <p class="page-sub">Area: <strong>{{ area }} sq yards</strong> &nbsp;·&nbsp;
+    Floors: <strong>{{ floors }}</strong> &nbsp;·&nbsp;
+    Timeline: <strong>{{ days }} days</strong> &nbsp;·&nbsp;
+    Wage: <strong>₹{{ wage }}/day</strong></p>
+
+  <!-- AI ADVICE -->
+  {% if advice %}
+  <div class="ai-card">
+    <div class="ai-badge">🤖 IBM Granite 3.3 2B — AI Analysis</div>
+    <ul class="ai-list">
+      {% for tip in advice %}<li>{{ tip }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <!-- ROW 1: Workers + Timeline + Risk -->
+  <div class="grid-3">
+
+    <!-- Workers -->
+    <div class="card">
+      <div class="card-header"><div class="icon ib">👷</div>Workers & Labor</div>
+      <div class="workers-grid">
+        <div class="w-item total">
+          <div class="w-num">{{ workers }}</div><div class="w-label">Total Workers</div>
+        </div>
+        <div class="w-item">
+          <div class="w-num">{{ masons }}</div><div class="w-label">Masons</div>
+        </div>
+        <div class="w-item">
+          <div class="w-num">{{ helpers }}</div><div class="w-label">Helpers</div>
+        </div>
+        <div class="w-item">
+          <div class="w-num">{{ steel_workers }}</div><div class="w-label">Steel Workers</div>
+        </div>
+        <div class="w-item">
+          <div class="w-num">{{ carpenters }}</div><div class="w-label">Carpenters</div>
+        </div>
+        <div class="w-item">
+          <div class="w-num">{{ supervisors }}</div><div class="w-label">Supervisors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card">
+      <div class="card-header"><div class="icon ig">📅</div>Timeline</div>
+      <div class="tl-row"><span class="tl-label">Duration (Days)</span><span class="tl-val">{{ days }}</span></div>
+      <div class="tl-row"><span class="tl-label">Duration (Weeks)</span><span class="tl-val">{{ weeks }}</span></div>
+      <div class="tl-row"><span class="tl-label">Duration (Months)</span><span class="tl-val">{{ months }}</span></div>
+      <div class="tl-row"><span class="tl-label">Total Floors</span><span class="tl-val">{{ floors }}</span></div>
+    </div>
+
+    <!-- Risk -->
+    <div class="card">
+      <div class="card-header"><div class="icon ir">⚠️</div>Risk Assessment</div>
+      <div class="risk-row risk-{{ risk | lower }}">
+        <div>
+          <div style="font-size:.78rem;color:var(--muted);margin-bottom:3px;">Risk Level</div>
+          <div class="risk-label">{{ risk }} Risk</div>
+        </div>
+        <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;">{{ score }}</div>
+      </div>
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:5px;">Efficiency Score</div>
+      <div class="score-bar">
+        <div class="score-fill" style="width:{{ score }}%;
+          background:{% if score > 80 %}var(--green){% elif score > 60 %}var(--accent){% else %}var(--red){% endif %}">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2: Cost + Materials -->
+  <div class="grid-2">
+
+    <!-- Costs -->
+    <div class="card">
+      <div class="card-header"><div class="icon io">💰</div>Cost Breakdown</div>
+      <div class="cost-row"><span class="cost-label">Labor Cost</span><span class="cost-val">₹{{ "{:,.0f}".format(labor_cost) }}</span></div>
+      <div class="cost-row"><span class="cost-label">Material Cost</span><span class="cost-val">₹{{ "{:,.0f}".format(material_cost) }}</span></div>
+      <div class="cost-row"><span class="cost-label">Overhead (10%)</span><span class="cost-val">₹{{ "{:,.0f}".format(overhead) }}</span></div>
+      <div class="cost-row total"><span class="cost-label">Total Cost</span><span class="cost-val">₹{{ "{:,.0f}".format(cost) }}</span></div>
+      <div style="margin-top:.7rem;padding:8px 13px;background:var(--surface2);border-radius:8px;
+        font-size:.8rem;color:var(--muted);">
+        Cost per Sq. Yard: <strong style="color:var(--accent2);">₹{{ "{:,.0f}".format(cost_per_sq_yard) }}</strong>
+      </div>
+    </div>
+
+    <!-- Materials -->
+    <div class="card">
+      <div class="card-header"><div class="icon ip">🧱</div>Materials Required</div>
+      <div class="mat-grid">
+        <div class="mat-item"><span class="mat-icon">🔩</span><div><div class="mat-name">Steel</div><div class="mat-qty">{{ steel }} kg</div></div></div>
+        <div class="mat-item"><span class="mat-icon">🏗️</span><div><div class="mat-name">Cement Bags</div><div class="mat-qty">{{ cement }}</div></div></div>
+        <div class="mat-item"><span class="mat-icon">⛏️</span><div><div class="mat-name">Sand</div><div class="mat-qty">{{ sand_tons }} tons</div></div></div>
+        <div class="mat-item"><span class="mat-icon">💧</span><div><div class="mat-name">Water</div><div class="mat-qty">{{ water_liters }} L</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BLUEPRINT -->
+  {% if blueprint %}
+  <div class="blueprint-wrap">
+    <div class="bp-header">🏛️ Architectural Blueprint</div>
+    {% for floor in blueprint %}
+    <div class="floor-block">
+      <div class="floor-name">{{ floor.floor_name }}</div>
+      <div class="rooms-grid">
+        {% for room in floor.rooms %}
+        <div class="room">
+          <div class="room-name">{{ room.name }}</div>
+          <div class="room-sub">{{ room.label }}</div>
+          <div class="room-dim">{{ room.dim }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="floor-area">📐 Total Area: {{ floor.total_area }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- WEEKLY SCHEDULE -->
+  {% if weekly_schedule %}
+  <div class="sched-wrap">
+    <div class="sched-header">📅 Construction Schedule</div>
+    {% for item in weekly_schedule %}
+    <div class="sched-item">
+      <div class="sched-dot"></div>
+      <div>
+        <div class="sched-week">Week {{ item.week }}</div>
+        <div class="sched-phase">{{ item.phase }}</div>
+        <div class="sched-acts">{{ item.activities | join(' • ') }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ROW 3: Similar Project + Assumptions -->
+  <div class="grid-2">
+
+    <!-- Similar Project -->
+    {% if similar_project %}
+    <div class="card">
+      <div class="card-header"><div class="icon ib">🔍</div>Similar Completed Project</div>
+      <div style="font-weight:700;margin-bottom:.8rem;color:var(--accent2);">{{ similar_project.name }}</div>
+      <div class="sim-item"><span class="sim-key">Building Type</span><span class="sim-val">{{ similar_project.type }}</span></div>
+      <div class="sim-item"><span class="sim-key">Area</span><span class="sim-val">{{ similar_project.area }} sq yards</span></div>
+      <div class="sim-item"><span class="sim-key">Floors</span><span class="sim-val">{{ similar_project.floors }}</span></div>
+      <div class="sim-item"><span class="sim-key">Cost</span><span class="sim-val">{{ similar_project.cost }}</span></div>
+      <div class="sim-item"><span class="sim-key">Duration</span><span class="sim-val">{{ similar_project.days }} days</span></div>
+      <div class="sim-item"><span class="sim-key">Workers</span><span class="sim-val">{{ similar_project.workers }}</span></div>
+      <div class="sim-item"><span class="sim-key">Match Score</span>
+        <span class="sim-val" style="color:var(--green);">{{ similar_project.match_score }}</span></div>
+    </div>
+    {% endif %}
+
+    <!-- Assumptions -->
+    {% if assumptions %}
+    <div class="card">
+      <div class="card-header"><div class="icon ig">📌</div>Assumptions & Parameters</div>
+      {% for key, val in assumptions.items() %}
+      <div class="assump-item">
+        <span class="assump-key">{{ key }}</span>
+        <span class="assump-val">{{ val }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+
+  <div style="text-align:center;margin-top:1rem;">
+    <a href="/"><button class="back-btn" style="padding:12px 28px;font-size:.95rem;">← Plan Another Project</button></a>
+  </div>
+
+</div>
+
+<footer>
+  <strong>BuildAI Pro</strong> – Construction Planning System &nbsp;|&nbsp;
+  Powered by IBM Granite 3.3 2B &nbsp;|&nbsp; © 2024 BuildAI Pro
+</footer>
+
+<a href="/chatbot" class="fab">
+  🤖
+  <span class="fab-label">AI Chat Assistant</span>
+</a>
+</body>
+</html>
